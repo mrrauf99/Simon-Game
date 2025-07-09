@@ -6,7 +6,10 @@ var level = 0;
 
 // Button key Event Handler
 $(document).keydown(function () {
-  nextSequence();
+  if (level == 0)
+  {
+    nextSequence();
+  }
 });
 
 
