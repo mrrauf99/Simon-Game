@@ -19,11 +19,11 @@ Test your memory skills by following and repeating the increasingly complex sequ
 
 🛠️ Technologies Used
 -
-📄 HTML5 — Structure and layout 
+HTML5 — Structure and layout 📄
 
-🎨 CSS3 — Styling and animations 
+CSS3 — Styling and animations 🎨
 
-⚡ jQuery — Simplified JavaScript for interactivity and event management 
+jQuery — Simplified JavaScript for interactivity and event management ⚡
 
 🎯 How to Play
 -
