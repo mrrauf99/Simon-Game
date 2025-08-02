@@ -3,15 +3,12 @@ var userClickedPattern = [];
 var buttonColors = ["green", "red", "yellow", "blue"];
 var level = 0;
 
-
 // Screen touch and key Event Handler
-$(document).on("touchstart keydown", => () {
-  if (level == 0)
-  {
+$(document).on("touchstart keydown", function () {
+  if (level == 0) {
     nextSequence();
   }
 });
-
 
 // Button Click Event Handler
 $(".btn").click(function () {
@@ -22,14 +19,12 @@ $(".btn").click(function () {
   checkAnswer();
 });
 
-
 function animatePress(currentColor) {
   $("#" + currentColor).addClass("pressed");
   setTimeout(function () {
     $("#" + currentColor).removeClass("pressed");
   }, 100);
 }
-
 
 function nextSequence() {
   level++;
@@ -71,30 +66,27 @@ function playSound(button) {
   }
 }
 
-function checkAnswer() 
-{
-  let currentLevel = userClickedPattern.length-1;
-  if (userClickedPattern[currentLevel] != gamePattern[currentLevel])
-    {
-      let audio = new Audio("./sounds/wrong.mp3");
-      audio.play();
+function checkAnswer() {
+  let currentLevel = userClickedPattern.length - 1;
+  if (userClickedPattern[currentLevel] != gamePattern[currentLevel]) {
+    let audio = new Audio("./sounds/wrong.mp3");
+    audio.play();
 
-      $("body").addClass("game-over");
-      setTimeout(function () {
+    $("body").addClass("game-over");
+    setTimeout(function () {
       $("body").removeClass("game-over");
-      }, 200);
-            
-      $("h1").text("Game Over, Press Any Key to Restart");
-      startOver();
-      return;
-    }
+    }, 200);
+
+    $("h1").text("Game Over, Press Any Key to Restart");
+    startOver();
+    return;
+  }
 
   // Go to the Next Level after completing the sequence.
-  if (userClickedPattern.length == level) 
-    {
-      setTimeout(nextSequence, 1000);
-      userClickedPattern = []; 
-    }
+  if (userClickedPattern.length == level) {
+    setTimeout(nextSequence, 1000);
+    userClickedPattern = [];
+  }
 }
 
 function startOver() {
@@ -106,14 +98,10 @@ function startOver() {
 // To prevent double tap zoom in
 let lastTouchEnd = 0;
 
-document.addEventListener('touchend', function (event) {
+document.addEventListener("touchend", function (event) {
   const now = new Date().getTime();
   if (now - lastTouchEnd <= 300) {
     event.preventDefault(); // block zoom if it's a double tap
   }
-  lastTouchEnd = now; 
+  lastTouchEnd = now;
 });
-
-
-
-
