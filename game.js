@@ -4,8 +4,17 @@ var buttonColors = ["green", "red", "yellow", "blue"];
 var level = 0;
 
 
-// Button key Event Handler
+// key Event Handler
 $(document).keydown(function () {
+  if (level == 0)
+  {
+    nextSequence();
+  }
+});
+
+
+// document click Event Handler
+$(document).click(function () {
   if (level == 0)
   {
     nextSequence();
@@ -102,3 +111,15 @@ function startOver() {
   userClickedPattern = [];
   level = 0;
 }
+
+// To prevent double tap zoom in
+let lastTouchEnd = 0;
+
+document.addEventListener('touchend', function (event) {
+  const now = new Date().getTime();
+  if (now - lastTouchEnd <= 300) {
+    event.preventDefault(); // block zoom if it's a double tap
+  }
+  lastTouchEnd = now; 
+});
+
