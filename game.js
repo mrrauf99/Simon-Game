@@ -4,17 +4,8 @@ var buttonColors = ["green", "red", "yellow", "blue"];
 var level = 0;
 
 
-// key Event Handler
-$(document).keydown(function () {
-  if (level == 0)
-  {
-    nextSequence();
-  }
-});
-
-
-// document touch Event Handler
-$(document).touchstart(function () {
+// Screen touch and key Event Handler
+$(document).on("touchstart keydown", (function () {
   if (level == 0)
   {
     nextSequence();
@@ -122,5 +113,6 @@ document.addEventListener('touchend', function (event) {
   }
   lastTouchEnd = now; 
 });
+
 
 
