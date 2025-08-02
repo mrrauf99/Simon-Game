@@ -13,8 +13,8 @@ $(document).keydown(function () {
 });
 
 
-// document click Event Handler
-$(document).click(function () {
+// document touch Event Handler
+$(document).touchstart(function () {
   if (level == 0)
   {
     nextSequence();
@@ -122,4 +122,5 @@ document.addEventListener('touchend', function (event) {
   }
   lastTouchEnd = now; 
 });
+
 
