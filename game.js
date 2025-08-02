@@ -5,7 +5,7 @@ var level = 0;
 
 
 // Screen touch and key Event Handler
-$(document).on("touchstart keydown", (function () {
+$(document).on("touchstart keydown", => () {
   if (level == 0)
   {
     nextSequence();
@@ -113,6 +113,7 @@ document.addEventListener('touchend', function (event) {
   }
   lastTouchEnd = now; 
 });
+
 
 
 
