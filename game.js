@@ -56,6 +56,7 @@ function nextSequence() {
 }
 
 function playSound(button) {
+  sounds[button].currentTime = 0;
   sounds[button].play();
 }
 
@@ -98,4 +99,5 @@ document.addEventListener("touchend", function (event) {
   }
   lastTouchEnd = now;
 });
+
 
