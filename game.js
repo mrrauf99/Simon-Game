@@ -1,7 +1,14 @@
-var gamePattern = [];
-var userClickedPattern = [];
-var buttonColors = ["green", "red", "yellow", "blue"];
-var level = 0;
+let gamePattern = [];
+let userClickedPattern = [];
+let buttonColors = ["green", "red", "yellow", "blue"];
+let level = 0;
+
+const sounds = {
+  red: new Audio("./sounds/red.mp3"),
+  blue: new Audio("./sounds/blue.mp3"),
+  green: new Audio("./sounds/green.mp3"),
+  yellow: new Audio("./sounds/yellow.mp3"),
+};
 
 // Screen touch and key Event Handler
 $(document).on("touchstart keydown", function () {
@@ -35,35 +42,16 @@ function nextSequence() {
   let randomChosenColor = buttonColors[randomNumber];
   gamePattern.push(randomChosenColor);
 
+  playSound(randomChosenColor);
+
   // animation
   $("." + randomChosenColor)
     .fadeOut(100)
     .fadeIn(100);
-  playSound(randomChosenColor);
 }
 
 function playSound(button) {
-  switch (button) {
-    case "red":
-      let red = new Audio("./sounds/red.mp3");
-      red.play();
-      break;
-    case "blue":
-      let blue = new Audio("./sounds/blue.mp3");
-      blue.play();
-      break;
-    case "green":
-      let green = new Audio("./sounds/green.mp3");
-      green.play();
-      break;
-    case "yellow":
-      let yellow = new Audio("./sounds/yellow.mp3");
-      yellow.play();
-      break;
-
-    default:
-      break;
-  }
+  sounds[button].play();
 }
 
 function checkAnswer() {
