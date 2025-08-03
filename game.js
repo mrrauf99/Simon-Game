@@ -11,9 +11,12 @@ const sounds = {
 };
 
 // Unlocked browser sound
-$(document).one("touchstart", function(){
-  sounds.red.play();
-})
+$(document).one("touchstart", function () {
+  let sound = sounds.red;
+  sound.play().then(function () {
+    sound.pause();
+  });
+});
 
 // Screen touch and key Event Handler
 $(document).on("touchstart keydown", function () {
@@ -99,5 +102,6 @@ document.addEventListener("touchend", function (event) {
   }
   lastTouchEnd = now;
 });
+
 
 
