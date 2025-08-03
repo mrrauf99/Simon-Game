@@ -17,8 +17,22 @@ $(document).on("touchstart keydown", function () {
   }
 });
 
-// Button Click Event Handler
-$(".btn").click(function () {
+// touch and click event handler
+let isTouch = false;
+
+$(".btn").on("click touchstart", function (event) {
+  if (event.type == "touchstart") {
+    isTouch = true;
+  }
+
+  if (event.type == "click" && isTouch) {
+    return;
+  }
+
+  setTimeout(function () {
+    isTouch = false;
+  }, 500);
+
   let userChosenColour = $(this).attr("id");
   userClickedPattern.push(userChosenColour);
   playSound(userChosenColour);
@@ -94,7 +108,3 @@ document.addEventListener("touchend", function (event) {
   }
   lastTouchEnd = now;
 });
-
-
-
-
