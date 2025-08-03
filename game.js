@@ -10,6 +10,11 @@ const sounds = {
   yellow: new Audio("./sounds/yellow.mp3"),
 };
 
+// Unlocked browser sound
+$(document).one("touchstart", function(){
+  sounds.red.play();
+})
+
 // Screen touch and key Event Handler
 $(document).on("touchstart keydown", function () {
   if (level == 0) {
@@ -93,3 +98,4 @@ document.addEventListener("touchend", function (event) {
   }
   lastTouchEnd = now;
 });
+
