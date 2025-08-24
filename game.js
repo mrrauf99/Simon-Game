@@ -10,20 +10,21 @@ const sounds = {
   yellow: new Audio("./sounds/yellow.mp3"),
 };
 
-// Screen touch and key Event Handler
-$(document).on("touchstart keydown", function () {
-  if (level == 0) {
-    nextSequence();
-  }
+// Start Game Event Handler
+$(".btn-start").on("pointerdown", function () {
+  $(this).css("display", "none");
+  nextSequence();
 });
 
-// Click Event Handler
-$(".btn").on("click", function (event) {
-  let userChosenColour = $(this).attr("id");
-  userClickedPattern.push(userChosenColour);
-  playSound(userChosenColour);
-  animatePress(userChosenColour);
-  checkAnswer();
+// Click and touch Event Handler
+$(".btn").on("pointerdown", function () {
+  if (level > 0) {
+    let userChosenColour = $(this).attr("id");
+    userClickedPattern.push(userChosenColour);
+    playSound(userChosenColour);
+    animatePress(userChosenColour);
+    checkAnswer();
+  }
 });
 
 function animatePress(currentColor) {
@@ -55,6 +56,12 @@ function playSound(button) {
   sounds[button].play();
 }
 
+function startOver() {
+  gamePattern = [];
+  userClickedPattern = [];
+  level = 0;
+}
+
 function checkAnswer() {
   let currentLevel = userClickedPattern.length - 1;
   if (userClickedPattern[currentLevel] != gamePattern[currentLevel]) {
@@ -66,8 +73,9 @@ function checkAnswer() {
       $("body").removeClass("game-over");
     }, 200);
 
-    $("h1").text("Game Over, Press Any Key to Restart");
+    $("h1").text("Game Over! Click Start Game to restart.");
     startOver();
+    $(".btn-start").css("display", "block");
     return;
   }
 
@@ -76,12 +84,6 @@ function checkAnswer() {
     setTimeout(nextSequence, 1000);
     userClickedPattern = [];
   }
-}
-
-function startOver() {
-  gamePattern = [];
-  userClickedPattern = [];
-  level = 0;
 }
 
 // To prevent double tap zoom in
@@ -94,4 +96,3 @@ document.addEventListener("touchend", function (event) {
   }
   lastTouchEnd = now;
 });
-
