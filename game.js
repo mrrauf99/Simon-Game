@@ -13,7 +13,7 @@ const sounds = {
 // Start Game Event Handler
 $(".btn-start").on("pointerdown", function () {
   $(this).css("display", "none");
-  nextSequence();
+  requestAnimationFrame(nextSequence); // runs after screen updates
 });
 
 // Click and touch Event Handler
@@ -96,3 +96,4 @@ document.addEventListener("touchend", function (event) {
   }
   lastTouchEnd = now;
 });
+
